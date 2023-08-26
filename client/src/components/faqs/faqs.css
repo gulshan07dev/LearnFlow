@@ -1,0 +1,35 @@
+.faq-container {
+    width: 100%; 
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-container h1 {
+    margin-bottom: 10px;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    color: #000000af;
+}
+
+.faq-answer {
+    padding: 15px; 
+    background-color: #ffffffe5;
+    box-shadow: 0 5px 32px #0000001e;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: "Nunito Sans", sans-serif;
+    margin-top: 7px;
+    color: #0000009a;
+    transition: .3s;
+}

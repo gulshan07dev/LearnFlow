@@ -1,0 +1,150 @@
+.auth-section {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 0;
+}
+
+.auth-section .image {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #f1f8ff;
+}
+
+.auth-section .image img {
+    width: 80%;
+}
+
+.auth-section .login-container {
+    width: 40%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 60px 40px;
+    box-shadow: 3px 8px 32px #0000002f;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.auth-section .login-container .logo {
+    width: 150px;
+}
+
+.auth-section .login-container .logo img {
+    width: 100%;
+}
+
+.auth-section .login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-section .login-container form h1 {
+    margin-bottom: 15px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.avatar {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.avatar img,
+.avatar svg {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #a0a0a0;
+
+}
+
+.auth-section .login-container form .input-field {
+    width: 90%;
+}
+
+.auth-section .login-container form .input-field input {
+    width: 100%;
+    padding: 12px 7px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000d7;
+    border: 1px solid #00000017;
+    border-radius: 3px;
+    background: transparent;
+    transition: .3s;
+}
+
+.auth-section .login-container form .input-field input:focus {
+    box-shadow: 0 3px 25px #0000001e;
+    border: 1px solid #00000000;
+
+}
+
+.auth-section .login-container form button {
+    width: 90%;
+    background: var(--primary-bg);
+}
+
+.auth-section .login-container form .jump-user {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 7px;
+}
+
+.auth-section .login-container form .jump-user a {
+    font-size: 14px;
+    color: #0000009d;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .auth-section {
+        justify-content: center;
+    }
+
+    .auth-section .image {
+        display: none;
+    }
+
+    .auth-section .login-container {
+        max-width: 500px;
+        width: 100%;
+        padding-inline: 15px;
+        box-shadow: none;
+        height: auto;
+        gap: 20px;
+    }
+
+    .auth-section .login-container form {
+        align-items: flex-start;
+    }
+
+    .auth-section .login-container form .input-field,
+    .auth-section .login-container form button,
+    .auth-section .login-container form .jump-user,
+    .avatar {
+        width: 100%;
+    }
+
+    .auth-section .login-container form .jump-user a {
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-width: 625px) {
+
+    .auth-section .login-container form h1 {
+        text-align: inherit;
+    }
+}

@@ -1,0 +1,64 @@
+ 
+.achievement-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 50px;
+    gap: 25px;
+    flex-wrap: wrap; 
+}
+
+.achievement-section .statistics {
+    width: 275px;
+    display: flex;
+    gap: 20px;
+    padding: 24px 14px; 
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    border-radius: 15px;
+    background: #ffffff;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 7px;
+}
+
+.achievement-section .statistics div {
+    font-family: 'Inter', sans-serif;
+}
+
+.achievement-section .statistics div h2 {
+    font-size: 20px;
+    color: #3D3D3D;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.achievement-section .statistics div p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #00000098;
+    padding: 1px;
+    font-weight: 300;
+}
+
+
+@media screen and (max-width: 625px) {
+    .achievement-section {
+        padding: 7px 15px 70px 15px;
+        gap: 25px;
+    }
+
+    .achievement-section .statistics {
+        width: 95%;
+    }
+
+    .achievement-section .statistics div h2 {
+        font-size: 18px; 
+        color: #0000009c;
+    }
+    
+    .achievement-section .statistics div p {
+        font-size: 0.8rem; 
+        line-height: 21px;
+    }
+}

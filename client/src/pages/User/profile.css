@@ -1,0 +1,144 @@
+.profile-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 100px;
+}
+
+
+/* upper part */
+.profile-section .profile .upper-part {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.profile-section .profile .upper-part div {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* overflow: hidden; */
+    cursor: pointer;
+    position: relative;
+}
+
+.profile-section .profile .upper-part img,
+.profile-section .profile .upper-part svg {
+    width: 100%;
+    height: 100%; 
+    border-radius: 50%;
+}
+
+.profile-section .profile .upper-part .edit-btn {
+    height: 27px;
+    width: 27px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px #00000017;
+    padding: 4px; 
+    position: absolute;
+    border-radius: 45%;
+    bottom: -8px;
+    right: -7px;
+    z-index: 2;
+    color: #1b17f3;
+}
+
+.profile-section .profile .upper-part h2 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/* Style for the container */
+.profile-section .profile {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px #00000028;
+    padding: 30px 40px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+/* Style for the container */
+.profile-section .profile form {
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap; 
+}
+ 
+
+.profile-section .profile form div {
+    width: calc(50% - 20px);
+    position: relative;
+}
+
+.profile-section .profile form .disable-btn {
+    background: none;
+    color: red;
+    font-size: 14px;
+    /* position: absolute; */
+}
+    
+.profile-section .profile form .submit-btn {
+    width: 300px;
+    padding-block: 14px;
+    background: var(--primary-bg);
+}
+ 
+.change-pass-btn {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    position: absolute;
+    top: 25px;
+    right: 15px; 
+    padding: 5px 7px;
+    color: #e90606;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+}
+
+.change-pass-btn:hover { 
+    box-shadow: 0 3px 7px #483bff6b;
+}
+
+.change-pass-btn svg {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 750px) {
+
+    .profile-section .profile {
+        padding-inline: 15px;
+        width: 100%;
+    }
+
+    .profile-section .profile form {
+        gap: 20px;
+    }
+
+    .profile-section .profile form div {
+        width: 100%;
+    }
+
+    .profile-section .profile form .submit-btn {
+        width: 100%;
+        padding-block: 12px;
+    }
+    .change-pass-btn {
+        position: static;  
+        margin: 0 auto;
+        margin-top: 10px;
+        background: #ff02021e;
+        width: 100%;
+        border-radius: 10px 15px 20px 25px;
+        padding: 6px; 
+        text-align: center;
+        justify-content: space-around;
+        flex-direction: row-reverse;
+    }
+}

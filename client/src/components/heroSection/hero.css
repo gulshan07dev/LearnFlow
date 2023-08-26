@@ -1,0 +1,122 @@
+.hero-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px;
+}
+
+.hero-section .left-section {
+    width: 50%;
+}
+
+.hero-section .left-section header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+}
+
+.hero-section .left-section header h1 {
+    font-size: 36px;
+    line-height: 44px;
+    color: #1B2124;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; 
+}
+
+.hero-section .left-section header h1 .type-writter {
+    color: var(--primary-bg);
+    text-transform: uppercase
+}
+
+.hero-section .left-section header p {
+    font-size: 1.12rem; 
+    line-height: 26px;
+    color: #414b49;
+    padding: 3px;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-section .left-section header button {
+    padding-inline: 50px;
+}
+
+.hero-section .right-section {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 15px 15px 0 15px;
+    background: linear-gradient(to bottom, transparent, #0004ff0a);
+    border-radius: 15px;
+    backdrop-filter: blur(100px) brightness(1000%);
+}
+
+.hero-section .right-section img {
+    width: 100%;
+}
+@media screen and (max-width: 1000px) {
+    .hero-section {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 50px;
+    }
+
+    .hero-section .right-section {
+        width: 100%;
+    }
+
+    .hero-section .left-section {
+        width: 100%;
+    }
+
+    .hero-section .left-section header {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .hero-section {
+        padding: 7px 20px; 
+    }
+    .hero-section .right-section {
+        padding: 0;
+        justify-content: center;
+        height: fit-contentcd;
+    }
+    .hero-section .right-section img {
+        width: 60%;
+    }
+
+    .hero-section .left-section {
+        height: fit-content;
+    }
+
+    .hero-section .left-section header {
+        gap: 20px;
+    }
+
+    .hero-section .left-section header h1 {
+        font-size: 24px;  
+        font-weight: 700;
+    }
+    .upscalling-text::after {
+        content: "\a";
+        white-space: pre;
+    }
+     
+    .hero-section .left-section header p {
+        font-size: 1rem;
+        line-height: 24px; 
+        padding: 0;
+    }
+    .hero-section .left-section header button {
+        width: 85%;
+    }
+}
