@@ -9,7 +9,6 @@ import {
   BarElement,
   Title,
 } from "chart.js";
-import {} from "@mui/icons-material";
 import { Pie, Bar } from "react-chartjs-2";
 import { FaUsers } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
