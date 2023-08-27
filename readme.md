@@ -64,7 +64,8 @@ LMS-Project/
 │   ├── package.json
 │   ├── README.md
 │
-└── ...
+└──
+```
 
 
 ## Features
@@ -96,7 +97,6 @@ Click the image above to watch the demo video.
 - `POST /reset/:resetToken`: User resetting the password.
 - `POST /change-password`: User can change password using old and new password.
 - `POST /update/:id`: User can update their profile.
-- ...
 
 ### Course Routes
 
@@ -105,7 +105,6 @@ Click the image above to watch the demo video.
 - `GET /courses/:id`: Get lectures for a specific course.
 - `PUT /courses/:id`: Update course details (Admin only).
 - `DELETE /courses/:id`: Delete a course (Admin only).
-- ...
 
 ### Payment Routes
 
@@ -119,7 +118,6 @@ Click the image above to watch the demo video.
 
 - `POST /contact`: Contact us.
 - `GET /admin/stats/users`: Get user statistics (Admin only).
-- ...
 
 ## Tech Stack
 
@@ -138,7 +136,6 @@ Click the image above to watch the demo video.
 - Cloudinary
 - Nodemailer
 - Razorpay
-- ...
 
 ### Frontend
 
@@ -155,7 +152,6 @@ Click the image above to watch the demo video.
 - Redux Toolkit
 - Chart.js
 - React-Chartjs-2
-- ...
 
 ---
 
