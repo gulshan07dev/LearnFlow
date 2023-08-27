@@ -88,6 +88,7 @@ export default function Layout() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/faqs" element={<Faqs />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
 
