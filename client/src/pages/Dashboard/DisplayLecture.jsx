@@ -60,7 +60,7 @@ export default function DisplayLecture() {
     // lecture dashboard section
     <section className="bg-white p-0 w-[100vw] flex flex-col lg:flex-row justify-between gap-0">
       {/* video play and video details section */}
-      <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[50vh] overflow-y-scroll">
+      <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[50vh] shadow-sm overflow-y-scroll">
         {/* video header */}
         <div className="py-7 px-5 flex shadow-xl lg:gap-3 gap-4 lg:h-[75px] h-[70px] overflow-hidden text-ellipsis bg-white w-[100%] items-center sticky top-0 z-50">
           <FaArrowLeft
