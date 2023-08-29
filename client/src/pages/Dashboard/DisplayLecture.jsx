@@ -60,7 +60,7 @@ export default function DisplayLecture() {
     // lecture dashboard section
     <section className="bg-white p-0 w-[100vw] flex flex-col lg:flex-row justify-between gap-0">
       {/* video play and video details section */}
-      <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[40vh] overflow-y-scroll">
+      <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[50vh] overflow-y-scroll">
         {/* video header */}
         <div className="py-7 px-5 flex shadow-xl lg:gap-3 gap-4 lg:h-[75px] h-[70px] overflow-hidden text-ellipsis bg-white w-[100%] items-center sticky top-0 z-50">
           <FaArrowLeft
@@ -73,7 +73,7 @@ export default function DisplayLecture() {
           </h6>
         </div>
         {/* lecture video */}
-        <div className="w-[100%] flex bg-black justify-center items-center lg:h-[400px] md:h-[300px] h-[230px]">
+        <div className="w-[100%] flex bg-black justify-center items-center lg:h-[400px] md:h-[300px] h-[210px]">
           <video
             className="h-[100%]"
             src={selectedLecture?.lecture?.secure_url}
@@ -89,7 +89,7 @@ export default function DisplayLecture() {
         </div>
       </div>
       {/* lecture list and crud for admin section */}
-      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-[#fff8fa] shadow-lg h-[60vh] overflow-y-scroll">
+      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-[#fffdfe] shadow-lg h-[50vh] overflow-y-scroll">
         {/* add lecture button for admin */}
         {role === "ADMIN" && (
           <div className="lg:h-[75px] h-[70px] flex py-3 justify-center items-center bg-white shadow-xl">
