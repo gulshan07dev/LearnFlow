@@ -2,7 +2,7 @@ import React from "react";
 import "./hero.css";
 import heroImg from "../../assets/hero.png";
 import { useNavigate } from "react-router-dom";
-import Typed from "react-typed";
+import Typewriter from "typewriter-effect";
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -14,11 +14,21 @@ export default function HeroSection() {
             <span className="upscalling-text">Upscalling Made</span>
             <span className="type-writter">
               {" <"}
-              <Typed
-                strings={["Affordable", "Practical", "Easy"]}
-                typeSpeed={150}
-                backSpeed={100}
-                loop
+              <Typewriter
+                options={{
+                  strings: [
+                    "Easy",
+                    "Affordable",
+                    "Practical",
+                    "Empowering",
+                    "Innovative",
+                    "Transformative",
+                    "Interactive",
+                  ],
+                  autoStart: true,
+                  deleteSpeed: 100,
+                  loop: true,
+                }}
               />
               {">"}
             </span>
@@ -31,7 +41,7 @@ export default function HeroSection() {
             for time and resources you invest, with job-ready courses &
             high-technology, available at the lowest cost.
           </p>
-          <button onClick={() => navigate('/courses')}>Explore Courses</button>
+          <button onClick={() => navigate("/courses")}>Explore Courses</button>
         </header>
       </div>
       <div className="right-section">

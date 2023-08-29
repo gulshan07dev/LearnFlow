@@ -145,7 +145,7 @@ Click the image above to watch the demo video.
 - Material-UI
 - React-Router
 - React-Slick
-- React-Typed
+- Typewriter-Effect
 - React-Toastify
 - React-Modal
 - React-Redux

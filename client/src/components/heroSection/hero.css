@@ -9,7 +9,7 @@
 }
 
 .hero-section .left-section {
-    width: 50%;
+    width: 55%;
 }
 
 .hero-section .left-section header {
@@ -24,12 +24,17 @@
     line-height: 44px;
     color: #1B2124;
     font-family: 'Inter', sans-serif;
-    font-weight: 600; 
+    font-weight: 600;  
 }
 
-.hero-section .left-section header h1 .type-writter {
+.hero-section .left-section header h1 .type-writter { 
+    font-size: 34px;
     color: var(--primary-bg);
-    text-transform: uppercase
+    text-transform: uppercase; 
+}
+
+.hero-section .left-section header h1 .type-writter .Typewriter {
+    display: inline-block;
 }
 
 .hero-section .left-section header p {
@@ -39,6 +44,7 @@
     padding: 3px;
     font-weight: 300;
     font-family: 'Inter', sans-serif;
+    padding-right: 7rem;
 }
 
 .hero-section .left-section header button {
@@ -46,7 +52,7 @@
 }
 
 .hero-section .right-section {
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
