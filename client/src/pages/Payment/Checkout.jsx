@@ -3,6 +3,7 @@ import { MdSubscriptions } from "react-icons/md";
 import subscriptionVideo from "../../assets/subscription.mp4";
 import { BiRupee } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../Redux/authSlice";
 import {
   getRazorPayId,
   purchaseCourseBundle,
@@ -48,7 +49,7 @@ const Checkout = () => {
       key: razorPayKey,
       subscription_id: subscription_id,
       name: "LMSskills Pvt. Ltd.",
-      description: "Monthly Subscription",
+      description: "Yearly Subscription",
       handler: async function (response) {
         paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
         paymentDetails.razorpay_subscription_id =
@@ -62,13 +63,13 @@ const Checkout = () => {
         const res = await dispatch(verifyUserPayment(paymentDetails));
 
         // redirecting the user according to the verification status
-        !isPaymentVerified
-          ? navigate("/checkout/success")
+        isPaymentVerified
+          ? (dispatch(getUserData()), navigate("/checkout/success"))
           : navigate("/checkout/fail");
       },
       prefill: {
-        name: userData.fullName,
-        email: userData.email,
+        name: userData?.fullName,
+        email: userData?.email,
       },
       theme: {
         color: "#F37254",
