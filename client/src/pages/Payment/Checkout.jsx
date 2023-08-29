@@ -3,7 +3,6 @@ import { MdSubscriptions } from "react-icons/md";
 import subscriptionVideo from "../../assets/subscription.mp4";
 import { BiRupee } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../../Redux/authSlice";
 import {
   getRazorPayId,
   purchaseCourseBundle,
@@ -63,8 +62,8 @@ const Checkout = () => {
         const res = await dispatch(verifyUserPayment(paymentDetails));
 
         // redirecting the user according to the verification status
-        isPaymentVerified
-          ? (dispatch(getUserData()), navigate("/checkout/success"))
+        !isPaymentVerified
+          ? navigate("/checkout/success")
           : navigate("/checkout/fail");
       },
       prefill: {
