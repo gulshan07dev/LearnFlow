@@ -279,7 +279,7 @@ export default function AdminDashboard() {
 
                         {/* to delete the course */}
                         <button
-                          onClick={() => handleCourseDelete(element._id)}
+                          onClick={() => handleCourseDelete(element?._id)}
                           className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-base py-1 px-2 rounded-md font-bold"
                         >
                           <BsTrash />
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
                         <button
                           onClick={() =>
                             navigate(
-                              `/course/display-lecture/${element?.title.replaceAll(
+                              `/course/display-lecture/${element?.title?.replaceAll(
                                 " ",
                                 "-"
                               )}`

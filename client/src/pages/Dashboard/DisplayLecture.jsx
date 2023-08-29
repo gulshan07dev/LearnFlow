@@ -68,7 +68,7 @@ export default function DisplayLecture() {
             onClick={() => navigate(-1)}
           />
           <h6 className="lg:text-base text-sm text-gray-600 font-semibold">
-            <span className="font-thin">Now Playing -- </span>{" "}
+            <span className="font-light">Now Playing -- </span>{" "}
             {selectedLecture?.title}
           </h6>
         </div>
@@ -106,7 +106,7 @@ export default function DisplayLecture() {
           {lecturesData?.map((lecture, idx) => (
             <li
               key={lecture._id}
-              className={`w-[100%] py-5 px-3 text-lg  border-b-[1px] cursor-pointer border-gray-600 ${
+              className={`w-[100%] py-5 px-3 md:text-lg text-base border-b-[1px] cursor-pointer border-gray-600 ${
                 selectedLecture?._id === lecture._id
                   ? "font-semibold text-[var(--primary-bg)]"
                   : "text-gray-800"

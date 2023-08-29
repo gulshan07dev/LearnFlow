@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import axios from "axios"; 
+import axios from "axios";
+const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
@@ -15,7 +16,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
   );
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_REACT_APP_API_URL}/user/register`,
+      `${apiUrl}/user/register`,
       data,
       {
         headers: { "Content-Type": "multipart/form-data" },
@@ -52,7 +53,7 @@ export const login = createAsyncThunk("auth/login", async (data) => {
 
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_REACT_APP_API_URL}/user/login`,
+      `${apiUrl}/user/login`,
       data,
       {
         headers: { "Content-Type": "application/json" },
@@ -92,7 +93,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   );
 
   try {
-    await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/user/logout`, {
+    await axios.get(`${apiUrl}/user/logout`, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
@@ -119,7 +120,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 // .......function to fetch user data.....
 export const getUserData = createAsyncThunk("/user/details", async () => {
   try {
-    const res = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/user/me`, {
+    const res = await axios.get(`${apiUrl}/user/me`, {
       withCredentials: true
     });
     return res?.data;
@@ -141,7 +142,7 @@ export const updateProfile = createAsyncThunk(
     );
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/user/update/${data[0]}`,
+        `${apiUrl}/user/update/${data[0]}`,
         data[1],
         {
           headers: {
@@ -182,7 +183,7 @@ export const changePassword = createAsyncThunk(
     );
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/user/change-password`,
+        `${apiUrl}/user/change-password`,
         userPassword,
         {
           headers: { "Content-Type": "application/json" },
@@ -219,7 +220,7 @@ export const forgetPassword = createAsyncThunk(
     const loadingMessage = toast.loading("Please Wait! sending email...");
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/user/reset`,
+        `${apiUrl}/user/reset`,
         { email },
         {
           headers: { "Content-Type": "application/json" },
@@ -257,7 +258,7 @@ export const resetPassword = createAsyncThunk("/user/reset", async (data) => {
   const loadingMessage = toast.loading("Please Wait! reseting your password...");
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_REACT_APP_API_URL}/user/reset/${data.resetToken}`,
+      `${apiUrl}/user/reset/${data.resetToken}`,
       { password: data.password },
       {
         headers: { "Content-Type": "application/json" },

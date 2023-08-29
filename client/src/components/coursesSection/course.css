@@ -134,4 +134,8 @@
     .course-container .course {
         width: 98%;
     }
+    .courses-section {
+        padding-inline: 5px;
+        overflow: hidden;
+    }
 }

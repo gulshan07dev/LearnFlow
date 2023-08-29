@@ -26,7 +26,7 @@ export default function MyCourses() {
                 className="lg:w-[250px] md:w-[250px] lg:h-[210px] lg:h[210px] h-auto w-[100%] overflow-hidden text-ellipsis"
               >
                 <NavLink
-                  to={`/course/display-lecture/${course?.title.replaceAll(" ", "-")}`}
+                  to={`/course/display-lecture/${course?.title?.replaceAll(" ", "-")}`}
                   className="flex flex-col gap-2"
                 >
                   <img
