@@ -6,7 +6,7 @@ import App from "./App";
 import "./index.css";
 import Modal from "react-modal";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./Redux/store";
 import ScrollToTop from "./utils/ScrollToTop";
 Modal.setAppElement("#root");
  
