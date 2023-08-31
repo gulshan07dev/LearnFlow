@@ -180,4 +180,10 @@ nav .profile svg {
     nav .logo {
         width: 65px;
     }
+    .custom-modal {
+        /* Style the modal container */ 
+        top: -10px;
+        right: 7px;
+        padding: 70px 20px 0 0;
+    }
 }

@@ -24,13 +24,14 @@
     line-height: 44px;
     color: #1B2124;
     font-family: 'Inter', sans-serif;
-    font-weight: 600;  
+    font-weight: 700;  
 }
 
 .hero-section .left-section header h1 .type-writter { 
-    font-size: 34px;
+    font-size: 33px;
     color: var(--primary-bg);
     text-transform: uppercase; 
+    letter-spacing: 0.5px;
 }
 
 .hero-section .left-section header h1 .type-writter .Typewriter {
@@ -115,6 +116,9 @@
     .upscalling-text::after {
         content: "\a";
         white-space: pre;
+    }
+    .hero-section .left-section header h1 .type-writter { 
+        font-size: 27px; 
     }
      
     .hero-section .left-section header p {

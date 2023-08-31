@@ -15,11 +15,7 @@ export default function CoursesCrousel() {
   };
 
   const settings = {
-    dots: true,
-    speed: 500,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 1000,
+    dots: true, 
     screenY: true,
     slidesToShow: 3,
     slidesToScroll: 1,

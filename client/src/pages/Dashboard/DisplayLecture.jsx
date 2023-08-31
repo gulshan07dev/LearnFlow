@@ -58,7 +58,7 @@ export default function DisplayLecture() {
 
   return (
     // lecture dashboard section
-    <section className="bg-white p-0 w-[100vw] flex flex-col lg:flex-row justify-between gap-0">
+    <section className="bg-white p-0 w-[100vw h-[100vh] flex flex-col lg:flex-row justify-between">
       {/* video play and video details section */}
       <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[50vh] shadow-sm overflow-y-scroll">
         {/* video header */}
@@ -73,23 +73,26 @@ export default function DisplayLecture() {
           </h6>
         </div>
         {/* lecture video */}
-        <div className="w-[100%] flex bg-black justify-center items-center lg:h-[400px] md:h-[300px] h-[210px]">
+        <div className="w-[100%] flex bg-black justify-center items-center lg:h-[400px] md:h-[300px] h-[200px]">
           <video
             className="h-[100%]"
             src={selectedLecture?.lecture?.secure_url}
             controls
+            
           ></video>
         </div>
         {/* video description */}
-        <div className="flex flex-col py-8 px-4">
-          <header className="text-2xl text-[var(--primary-bg)] font-semibold">
+        <div className="flex flex-col gap-3 pb-8">
+          <header className="text-2xl text-[var(--primary-bg)] px-4 py-6  bg-[#F8F8F8] font-semibold">
             Description
           </header>
-          <p>{selectedLecture?.description}</p>
+          <p className="text-[18px] text-gray-600 font-medium px-4">
+            {selectedLecture?.description}
+          </p>
         </div>
       </div>
       {/* lecture list and crud for admin section */}
-      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-[#fffdfe] shadow-lg h-[50vh] overflow-y-scroll">
+      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-red-50 shadow-lg h-[50vh] overflow-y-scroll">
         {/* add lecture button for admin */}
         {role === "ADMIN" && (
           <div className="lg:h-[75px] h-[70px] flex py-3 justify-center items-center bg-white shadow-xl">
@@ -105,9 +108,9 @@ export default function DisplayLecture() {
         <ul className="flex flex-col">
           {lecturesData?.map((lecture, idx) => (
             <li
-              key={lecture._id}
-              className={`w-[100%] py-5 px-3 md:text-lg text-base border-b-[1px] cursor-pointer border-gray-600 ${
-                selectedLecture?._id === lecture._id
+              key={lecture?._id}
+              className={`w-[100%] py-5 px-3 md:text-lg text-base border-b-[1.7px] cursor-pointer border-gray-300 ${
+                selectedLecture?._id === lecture?._id
                   ? "font-semibold text-[var(--primary-bg)]"
                   : "text-gray-800"
               }  ${role === "ADMIN" ? "flex gap-2 justify-between" : ""}`}
@@ -119,7 +122,7 @@ export default function DisplayLecture() {
                     role === "ADMIN" ? "w-[80%]" : ""
                   }`}
                 ></span>
-                {idx + 1}. {lecture.title}
+                {idx + 1}. {lecture?.title}
               </p>
               {/* button for edit and delete lecture for admin */}
               {role === "ADMIN" && (

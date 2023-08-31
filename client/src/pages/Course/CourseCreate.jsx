@@ -123,11 +123,10 @@ export default function CourseCreate({ update }) {
 
       if (res?.payload?.success) {
         // fetch coursesData
-        dispatch(getAllCourses());
-
-        // set isloading false
-        setIsLoading(false);
+        dispatch(getAllCourses()); 
       }
+      // set isloading false
+      setIsLoading(false);
     }
     // for create course
     else {
