@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { FaEnvelope, FaPhone } from "react-icons/fa";
-import contactImg from "../../assets/contact.svg";
-import axios from "axios";
 import { toast } from "react-toastify";
+import axios from "axios";
+
+// css import
 import "./contact.css";
+
+// icons import
+import { FaEnvelope, FaPhone } from "react-icons/fa";
+
+// assests import
+import contactImg from "../../assets/contact.svg";
+
+// component import
+import TextAreaField from "../../components/inputField/TextAreaField";
 
 export default function Contact() {
   // State for form fields
@@ -130,7 +139,7 @@ export default function Contact() {
           {/* Full Name */}
           <div className="relative">
             <input
-              className="myinput w-full border-b-2 border-gray-300 text-gray-600 text-base focus:border-blue-500 focus:outline-none"
+              className="myinput w-full border-b-[1px] border-gray-300 text-[#000000c4] text-[17px] focus:border-blue-500 focus:outline-none"
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -149,7 +158,7 @@ export default function Contact() {
           {/* Email Address */}
           <div className="relative">
             <input
-              className="myinput w-full border-b-2 border-gray-300 text-gray-600 text-base focus:border-blue-500 focus:outline-none"
+              className="myinput w-full border-b-[1px] border-gray-300  text-[#000000c4] text-[17px] focus:border-blue-500 focus:outline-none"
               type="text"
               value={email}
               onChange={(e) => {
@@ -172,7 +181,7 @@ export default function Contact() {
           {activeTab === "corporate" && (
             <div className="relative">
               <input
-                className="myinput w-full border-b-2 border-gray-300  text-gray-600 text-base focus:border-blue-500 focus:outline-none"
+                className="myinput w-full border-b-[1px] border-gray-300  text-[#000000c4] text-[17px] focus:border-blue-500 focus:outline-none"
                 type="text"
                 id="org"
                 value={orgName}
@@ -191,23 +200,14 @@ export default function Contact() {
           )}
 
           {/* Message */}
-          <div className="relative">
-            <textarea
-              className="mytextarea w-full  text-gray-600 text-base border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none "
-              rows={5}
-              cols={10}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              autoComplete="off"
-              required
-            />
-            <label
-              className={`absolute left-5  
-              transition-all text-gray-600 text-lg opacity-80 pointer-events-none origin-[0%]`}
-            >
-              Your Message
-            </label>
-          </div>
+          <TextAreaField
+            rows={5}
+            cols={10}
+            name={"message"}
+            label={"Message"}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
 
           {/* Submit Button */}
           <button

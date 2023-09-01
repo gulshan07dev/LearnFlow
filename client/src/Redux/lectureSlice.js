@@ -5,6 +5,7 @@ const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const initialState = {
   lectures: [],
+  isLoading: true
 };
 
 // ....function to get all the lectures......
@@ -147,6 +148,7 @@ const lectureSlice = createSlice({
     builder
       .addCase(getCourseLecture.fulfilled, (state, action) => {
         state.lectures = action?.payload?.course?.lectures;
+        state.isLoading = false
       })
       .addCase(addCourseLecture.fulfilled, (state, action) => {
         state.lectures = action?.payload?.course?.lectures;

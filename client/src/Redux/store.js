@@ -12,7 +12,7 @@ const store = configureStore({
     lecture: lectureSliceReducer,
     razorpay: razorpaySliceReducer,
     stat: statSliceReducer,
-  }, devTools: true
+  }, devTools: false
 });
 
 export default store;

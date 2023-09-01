@@ -1,10 +1,17 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
- import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+// component import
+import Loading from '../../components/loading/Loading'
 
 export default function MyCourses() { 
   const { data } = useSelector((state) => state.auth);
-  const { coursesData } = useSelector((state) => state.course);
+  const { coursesData, isLoading } = useSelector((state) => state.course);
+
+  if(isLoading) {
+    return <Loading />
+  }
    return (
     // section for my courses
     <section className="py-5 flex flex-col gap-14">

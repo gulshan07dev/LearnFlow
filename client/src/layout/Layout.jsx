@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCourses } from "../Redux/courseSlice";
 import {
   Routes,
   Route,
@@ -9,7 +8,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-// import pages
+// import reducer slice
+import { getAllCourses } from "../Redux/courseSlice";
+
+// import pages and components
 import Navbar from "../components/Navbar/Navbar";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -52,6 +54,7 @@ export default function Layout() {
     }
   }, [coursesFetched, dispatch]);
 
+  // condition for show navbar or not
   const shouldShowNavbar =
     !location.pathname.includes("/login") &&
     !location.pathname.includes("display-lecture") &&
@@ -63,6 +66,7 @@ export default function Layout() {
     location.pathname.includes(path)
   );
 
+  // condition for show footer or not
   const shouldShowFooter =
     !location.pathname.includes("my-courses") &&
     !location.pathname.includes("display-lecture") &&

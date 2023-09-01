@@ -5,6 +5,7 @@ const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const initialState = {
   coursesData: [],
+  isLoading: true
 };
 
 // ......function to get all courses........
@@ -129,6 +130,7 @@ const courseSlice = createSlice({
       if (action.payload) {
         state.coursesData = [...action.payload];
       }
+      state.isLoading = false
     });
   },
 });

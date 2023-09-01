@@ -4,13 +4,14 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 const Faqs = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
+  // faqs Object Here...
   const faqs = [
     {
       question:
         "I am not able to view my enrolled course. What to do/whom to contact ?",
       answer: `Contact our counselors through the chat support on our website. Look for the chat option on the bottom right of the Homepage. Name the course you’re interested in, and the counseling team will guide you through the admission process.
-    Connect with our support team through the chat option in your enrolled course dashboard. Simply log in, enter the course dashboard, and find the chat option on the bottom left of the screen. Our technical support team will assist you with any technical or course-related queries. You can also reach us at support@pwskills.com.
-    To access your enrolled course, ensure you have logged in at learn.pwskills.com. If the course is still not visible, email your payment receipt to support@pwskills.com for assistance within 24 hours.`,
+    Connect with our support team through the chat option in your enrolled course dashboard. Simply log in, enter the course dashboard, and find the chat option on the bottom left of the screen. Our technical support team will assist you with any technical or course-related queries. You can also reach us at support@lmsskills.com.
+    To access your enrolled course, ensure you have logged in at lms-learning-menagement-system.vercel.app. If the course is still not visible, email your payment receipt to support@lmsskills.com for assistance within 24 hours.`,
     },
     {
       question: "How to get Placements and Job assistance ?",
@@ -21,7 +22,7 @@ const Faqs = () => {
       question: "Can I cancel my subscription?",
       answer: `Contact our counselors through the chat support on our website. Look for the chat option on the bottom right of the Homepage. Name the course you’re interested in, and the counseling team will guide you through the admission process.
     Connect with our support team through the chat option in your enrolled course dashboard. Simply log in, enter the course dashboard, and find the chat option on the bottom left of the screen. Our technical support team will assist you with any technical or course-related queries. You can also reach us at support@pwskills.com.
-    To access your enrolled course, ensure you have logged in at learn.pwskills.com. If the course is still not visible, email your payment receipt to support@pwskills.com for assistance within 24 hours.`,
+    To access your enrolled course, ensure you have logged in at lms-learning-menagement-system. If the course is still not visible, email your payment receipt to support@lmsskills.com for assistance within 24 hours.`,
     },
     // Add more FAQs here
   ];
@@ -37,20 +38,22 @@ const Faqs = () => {
           // item
           <div
             key={idx}
-            className={`border-[1px] cursor-pointer overflow-hidden transition-all ${
+            className={`border-[1px] overflow-hidden transition-all ${
               isActive
                 ? "mb-5 border-gray-600 bg-[#f8f9ffee] shadow-lg"
                 : "mb-2 border-gray-300 shadow-[0 5px 15px #00000012]"
             }`}
-            onClick={() =>
-              setActiveIndex((prevIndex) => (prevIndex === idx ? null : idx))
-            }
           >
-            <span className="md:text-xl text-lg p-5 flex gap-3 md:text-gray-700 text-gray-800 md:font-semibold font-medium">
+            <span
+              className="md:text-xl text-lg p-5 flex gap-3 md:text-gray-700 text-gray-800 md:font-semibold font-medium cursor-pointer"
+              onClick={() =>
+                setActiveIndex((prevIndex) => (prevIndex === idx ? null : idx))
+              }
+            >
               {isActive ? (
-                <FiChevronUp className="text-2xl" />
+                <FiChevronUp size={20} />
               ) : (
-                <FiChevronDown className="text-2xl" />
+                <FiChevronDown size={20} />
               )}{" "}
               {faq.question}
             </span>

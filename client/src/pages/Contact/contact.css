@@ -1,24 +1,10 @@
  .myinput:valid~label, .myinput:focus~label {
-    transform: translate(-5px, -70%) scale(0.7);
+    transform: translate(-5px, -70%);
+    font-size: 12px;
+    color: #007bff;
     opacity: 1;
 }
 
 .myinput ~ label {
     top: -30%;
-}
- 
-.mytextarea {
-    border: 2px solid #808080dc;
-    padding: 15px;
-}
-
-.mytextarea ~ label {
-    top: 7px; 
-}
-
-.mytextarea:focus~label, .mytextarea:valid~label {
-    transform: translate(-5px, -80%) scale(0.8);
-    opacity: 1;
-    background: #ffffff;
-    padding: 1px 3px;
 }

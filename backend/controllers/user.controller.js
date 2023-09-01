@@ -178,7 +178,7 @@ const forgotPassword = async (req, res, next) => {
     const resetPasswordURL = `${process.env.CLIENT_URL}/reset-password/${resetToken}`
 
     const subject = 'Reset Password';
-    const message = `You can reset your password by clicking <a href=${resetPasswordURL} target="_blank">Reset your password</a>\nIf the above link does not work for some reason then copy paste this link in new tab ${resetPasswordURL}.\n If you have not requested this, kindly ignore.`;
+    const message = `You can reset your password by clicking ${resetPasswordURL} Reset your password</$>\nIf the above link does not work for some reason then copy paste this link in new tab ${resetPasswordURL}.\n If you have not requested this, kindly ignore.`;
 
     try {
         await sendEmail(email, subject, message);

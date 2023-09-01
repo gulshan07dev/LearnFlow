@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeft, FaEdit } from "react-icons/fa";
-import { BsTrash } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+
+// Reducer slice imports
 import {
   getCourseLecture,
   deleteCourseLecture,
 } from "../../Redux/lectureSlice";
-import { useDispatch, useSelector } from "react-redux";
+
+// Icons import
+import { FaArrowLeft, FaEdit } from "react-icons/fa";
+import { BsTrash } from "react-icons/bs";
+
+// Component import
 import NotFound from "../../utils/NotFound";
+import Loading from "../../components/loading/Loading";
 
 export default function DisplayLecture() {
   const [courseId, setCourseId] = useState("");
@@ -21,35 +28,59 @@ export default function DisplayLecture() {
     (course) => course.title === courseName.replaceAll("-", " ")
   );
 
+  // Check if lectures are fetched
+  const [isLecturesFetched, setIsLecturesFetched] = useState(false);
+
+  // Fetch lectures by course id
   useEffect(() => {
+    const fetchCourseLecture = async (id) => {
+      const res = await dispatch(getCourseLecture(id));
+      if (res?.payload?.success) {
+        setIsLecturesFetched(true); // Lectures are fetched
+      }
+    };
     if (courseDetails) {
-      setCourseId(courseDetails._id);
-      dispatch(getCourseLecture(courseDetails._id));
+      setCourseId(courseDetails?._id);
+      fetchCourseLecture(courseDetails?._id);
     }
   }, [dispatch, courseDetails]);
 
+  // Fetch lectures data from state
   const lecturesData = useSelector((state) => state.lecture.lectures);
 
+  // Select the first lecture by default
   useEffect(() => {
     if (lecturesData?.length > 0) {
-      setSelectedLecture(lecturesData[0]); // Select the first lecture by default
+      setSelectedLecture(lecturesData[0]);
     }
-  }, [lecturesData, getCourseLecture]);
+    // If no lectures exist, set null
+    else {
+      setSelectedLecture(null);
+    }
+  }, [lecturesData]);
 
+  // If lectures are still being fetched, show loading
+  if (!isLecturesFetched) {
+    return <Loading />;
+  }
+
+  // If user searches for a lecture with a non-existent course, show "Course Not Found"
   if (!courseDetails) {
     return <NotFound text={"Course Not Found"} />;
   }
 
+  // Function for handling lecture click
   const handleLectureClick = (lecture) => {
     setSelectedLecture(lecture);
   };
 
+  // Function for handling delete lecture
   const handleDeleteLecture = async (id) => {
     if (window.confirm("Are you sure you want to delete the lecture?")) {
       const data = { courseId: courseId, lectureId: id };
       const res = await dispatch(deleteCourseLecture(data));
 
-      // fetching the new updated data for the course
+      // Fetch the new updated data for the course
       if (res.payload.success) {
         await dispatch(getCourseLecture(courseId));
       }
@@ -57,11 +88,11 @@ export default function DisplayLecture() {
   };
 
   return (
-    // lecture dashboard section
-    <section className="bg-white p-0 w-[100vw h-[100vh] flex flex-col lg:flex-row justify-between">
-      {/* video play and video details section */}
-      <div className="w-[100%] lg:gap-2 gap4 lg:w-[65%] lg:h-[100vh] h-[50vh] shadow-sm overflow-y-scroll">
-        {/* video header */}
+    // Lecture dashboard section
+    <section className="bg-white p-0 w-[100vw] h-[100vh] flex flex-col lg:flex-row justify-between">
+      {/* Video play and video details section */}
+      <div className="w-[100%] lg:gap-2 gap-4 lg:w-[65%] lg:h-[100vh] h-[50vh] shadow-sm overflow-y-scroll">
+        {/* Video header */}
         <div className="py-7 px-5 flex shadow-xl lg:gap-3 gap-4 lg:h-[75px] h-[70px] overflow-hidden text-ellipsis bg-white w-[100%] items-center sticky top-0 z-50">
           <FaArrowLeft
             className="text-2xl text-gray-700 font-semibold cursor-pointer"
@@ -69,31 +100,30 @@ export default function DisplayLecture() {
           />
           <h6 className="lg:text-base text-sm text-gray-600 font-semibold">
             <span className="font-light">Now Playing -- </span>{" "}
-            {selectedLecture?.title}
+            {selectedLecture?.title || ""}
           </h6>
         </div>
-        {/* lecture video */}
+        {/* Lecture video */}
         <div className="w-[100%] flex bg-black justify-center items-center lg:h-[400px] md:h-[300px] h-[200px]">
           <video
             className="h-[100%]"
-            src={selectedLecture?.lecture?.secure_url}
+            src={selectedLecture?.lecture?.secure_url || ""}
             controls
-            
           ></video>
         </div>
-        {/* video description */}
+        {/* Video description */}
         <div className="flex flex-col gap-3 pb-8">
           <header className="text-2xl text-[var(--primary-bg)] px-4 py-6  bg-[#F8F8F8] font-semibold">
             Description
           </header>
           <p className="text-[18px] text-gray-600 font-medium px-4">
-            {selectedLecture?.description}
+            {selectedLecture?.description || ""}
           </p>
         </div>
       </div>
-      {/* lecture list and crud for admin section */}
-      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-red-50 shadow-lg h-[50vh] overflow-y-scroll">
-        {/* add lecture button for admin */}
+      {/* Lecture list and CRUD for admin section */}
+      <div className="w-[100%] lg:w-[35%] lg:h-[100vh] flex flex-col bg-purple-50 shadow-lg h-[50vh] overflow-y-scroll">
+        {/* Add lecture button for admin */}
         {role === "ADMIN" && (
           <div className="lg:h-[75px] h-[70px] flex py-3 justify-center items-center bg-white shadow-xl">
             <button
@@ -124,7 +154,7 @@ export default function DisplayLecture() {
                 ></span>
                 {idx + 1}. {lecture?.title}
               </p>
-              {/* button for edit and delete lecture for admin */}
+              {/* Buttons for edit and delete lecture for admin */}
               {role === "ADMIN" && (
                 <div className="flex items-center gap-2 w-[20%] ">
                   <button
@@ -150,8 +180,11 @@ export default function DisplayLecture() {
             </li>
           ))}
         </ul>
+        {/* If no lectures are found, show this */}
         {!selectedLecture && (
-          <p>Currently Not Any Lectures Available in this course</p>
+          <p className="text-lg text-red-600 py-7 px-3 font-mono">
+            Currently Not Any Lectures are Available in this course
+          </p>
         )}
       </div>
     </section>

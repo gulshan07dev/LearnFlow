@@ -2,19 +2,19 @@
     position: relative;
 }
 
-.input-wrapper input {
+.input-wrapper input, .mytextarea {
     background: none;
     width: 100%;
     padding: 11px 10px;
     border: 1px solid #00000025;
     border-radius: 3px;
-    font-size: 18px;
+    font-size: 17px;
     color: #000000c4;
     font-family: "Inter", sans-serif;
     transition: border-color 0.3s ease;
 }
 
-.input-wrapper input:focus {
+.input-wrapper input:focus, .mytextarea:focus {
     border-color: #007bff;
 }
 
@@ -38,4 +38,22 @@
     color: #007bff;
     background: #ffffff;
     padding: 1px 3px;
+}
+
+/* for text area */
+.mytextarea { 
+    padding: 15px;
+}
+ 
+.mytextarea ~ label {
+    top: 7px; 
+}
+
+.mytextarea:focus~label, .mytextarea:valid~label {
+    transform: translate(-5px, -80%);
+    font-size: 12px;
+    opacity: 1;
+    background: #ffffff;
+    padding: 1px 3px;
+    color: #007bff; 
 }

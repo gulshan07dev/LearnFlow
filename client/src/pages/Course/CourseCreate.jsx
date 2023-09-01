@@ -1,14 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import NotFound from "../../utils/NotFound";
 import { toast } from "react-toastify";
-import InputField from "../../components/inputField/InputField";
 import { useDispatch, useSelector } from "react-redux";
+
+// reducer slice imports
 import {
   createNewCourse,
   updateCourse,
   getAllCourses,
 } from "../../Redux/courseSlice";
+
+// component import
+import NotFound from "../../utils/NotFound";
+import InputField from "../../components/inputField/InputField";
+import TextAreaField from "../../components/inputField/TextAreaField";
 
 export default function CourseCreate({ update }) {
   const dispatch = useDispatch();
@@ -123,7 +128,7 @@ export default function CourseCreate({ update }) {
 
       if (res?.payload?.success) {
         // fetch coursesData
-        dispatch(getAllCourses()); 
+        dispatch(getAllCourses());
       }
       // set isloading false
       setIsLoading(false);
@@ -152,14 +157,14 @@ export default function CourseCreate({ update }) {
 
   return (
     // main container
-    <section className="py-5 lg:py-10 md:px-0 flex justify-center">
-      <div className="flex flex-col lg:w-[80vw] md:w-[99vw] sm:w-[97%] gap-10 shadow-custom lg:py-4 pt-10 py-7 lg:px-16 px-3.5 rounded-xl">
+    <section className="py-5 lg:py-10 px-2 flex justify-center">
+      <div className="flex flex-col lg:w-[80vw] md:w-[70vw] w-[100%] gap-10 shadow-custom lg:py-4 pt-10 py-7 lg:px-16 md:px-16 px-4 rounded-xl">
         {/* heading */}
-        <h1 className="text-2xl text-gray-800 font-semibold text-center w-[100%] overflow-hidden text-ellipsis">
+        <h1 className="lg:text-2xl text-lg text-gray-800 font-semibold text-center w-[100%] overflow-hidden text-ellipsis">
           {update ? (
             <>
               Update '
-              <span className="text-[var(--primary-bg)] text-2xl">
+              <span className="text-[var(--primary-bg)] lg:text-2xl text-lg">
                 {courseDetails?.title}
               </span>
               ' Course
@@ -171,19 +176,24 @@ export default function CourseCreate({ update }) {
 
         {/* main form */}
         <form
-          className="flex relative pb-20 lg:pb-5 justify-between gap-7 flex-col md:flex-row lg:flex-row w-[100%]"
+         className="flex relative pb-20 lg:pb-5 justify-between gap-7 flex-col lg:flex-row w-[100%]"
           onSubmit={handleSubmit}
         >
           {/* Form section for thumbnail */}
           <div className="lg:w-[47%] w-[100%] flex flex-col gap-7">
             <div
-              className="w-[100%] h-[200px] lg:h-[250px] border-solid flex justify-center items-center border-gray-100 border-[3px] cursor-pointer"
-              onClick={() => {
+              className="w-[100%] h-[200px] lg:h-[250px] border-solid flex justify-center items-center border-gray-300 border-[1px] cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
                 thumbnailInputRef.current.click();
               }}
             >
               {formData.thumbnail ? (
                 <img
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    thumbnailInputRef.current.click();
+                  }}
                   src={
                     formData.thumbnail instanceof File
                       ? URL.createObjectURL(formData.thumbnail)
@@ -252,23 +262,14 @@ export default function CourseCreate({ update }) {
               onChange={handleInputChange}
             />
             {/* for course description */}
-            <div className="relative">
-              <textarea
-                className="mytextarea w-full text-gray-600 text-base border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none py-[11px] px-[10px]"
-                rows={6}
-                cols={10}
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                autoComplete="off"
-                required
-              />
-              <label
-                className={`absolute left-2.5 transition-all text-gray-500 text-base opacity-80 pointer-events-none origin-[0%]`}
-              >
-                Course Description
-              </label>
-            </div>
+            <TextAreaField
+              rows={6}
+              cols={10}
+              name={"description"}
+              label={"Lecture Description"}
+              value={formData.description}
+              onChange={handleInputChange}
+            />
           </div>
         </form>
       </div>
