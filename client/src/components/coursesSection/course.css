@@ -36,7 +36,7 @@
 .courses-section .course-container .slick-slider .slick-track { 
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    /* gap: 30px; */
     overflow: hidden;
 }
  
@@ -46,7 +46,7 @@
     height: 480px;
     border-radius: 20px;
     overflow: hidden; 
-    box-shadow: 0 3px 26px #0000000e;
+    box-shadow: 0 8px 30px #00000011;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -130,13 +130,14 @@
 }
 
 .course-container .course .btn-container button:first-child {
-    background: #cb38d821;
+    background: #ce06e021;
     color: var(--primary-bg);
 }
 
 @media screen and (max-width: 625px) {
     .course-container .course {
-        width: 100%;
+        width: 95%;
+        margin: auto;
         height: 485px;
     }
     .courses-section {

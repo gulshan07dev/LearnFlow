@@ -195,7 +195,7 @@ export default function UpdateLecture() {
           {/* Form section for course description */}
           <div className="lg:w-[47%] w-[100%] flex flex-col gap-7">
             <TextAreaField
-              rows={6}
+              rows={11}
               cols={10}
               name={"description"}
               label={"Lecture Description"}

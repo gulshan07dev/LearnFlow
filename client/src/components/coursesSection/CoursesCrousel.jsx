@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import CourseCard from "./CourseCard";
-import "./course.css"; 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";
 
+// css import
+import "./course.css";
+
+// component import
+import CourseCard from "./CourseCard";
+import CardSkeleton from "./CardSkeleton";
+
 export default function CoursesCrousel() {
-  const courses = useSelector((state) => state.course.coursesData)
+  const courses = useSelector((state) => state.course.coursesData);
+  const isLoading = useSelector((state) => state.course.isLoading);
   const [activeCategory, setActiveCategory] = useState("Trending");
 
   const handleCategoryClick = (category) => {
@@ -15,7 +21,7 @@ export default function CoursesCrousel() {
   };
 
   const settings = {
-    dots: true, 
+    dots: true,
     screenY: true,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -34,7 +40,7 @@ export default function CoursesCrousel() {
       },
     ],
   };
- 
+
   return (
     <section className="courses-section">
       <h1 className="section-heading">Our Courses</h1>
@@ -61,13 +67,19 @@ export default function CoursesCrousel() {
       <hr />
       <div className="course-container">
         <Slider {...settings}>
-          {courses.slice(0, 5).map((details, index) => (
-            <div key={index}>
-              <CourseCard details={details} />
-            </div>
-          ))}
+          {isLoading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <div key={index}>
+                  <CardSkeleton />
+                </div>
+              ))
+            : courses.slice(0, 5).map((details, index) => (
+                <div key={index}>
+                  <CourseCard details={details} />
+                </div>
+              ))}
         </Slider>
       </div>
     </section>
   );
-} 
+}
