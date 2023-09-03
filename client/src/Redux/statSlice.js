@@ -1,18 +1,17 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { toast } from "react-toastify";
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"; 
+import { toast } from "react-toastify";  
+import { axiosInstance } from "../Helper/AxiosInstance";
 
 const initialState = {
   allUsersCount: 0,
   subscribedUsersCount: 0,
 };
 
-// function to get the stats data from backend
+// ....function to get the stats data from backend....
 export const getStatsData = createAsyncThunk("getstat", async () => {
   const loadingMessage = toast.loading("Getting the stats...")
   try {
-    const response = await axios.get(`${apiUrl}/admin/stats/users`, {withCredentials: true});
+    const response = await axiosInstance.get(`/admin/stats/users`);
     toast.update(loadingMessage, {
       render: response?.data?.message,
       isLoading: false,

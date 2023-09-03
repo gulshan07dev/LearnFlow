@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import axios from "axios";
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+import { toast } from "react-toastify"; 
+import { axiosInstance } from "../Helper/AxiosInstance";
 
 const initialState = {
   lectures: [],
@@ -15,7 +14,7 @@ export const getCourseLecture = createAsyncThunk(
     // showing loading message
     const loadingMessage = toast.loading("Fetching the lectures...");
     try {
-      const response = await axios.get(`${apiUrl}/courses/${courseId}`, { withCredentials: true });
+      const response = await axiosInstance.get(`/courses/${courseId}`);
 
       // showing success message
       toast.update(loadingMessage, {
@@ -46,7 +45,7 @@ export const addCourseLecture = createAsyncThunk(
   async (data) => {
     const loadingMessage = toast.loading("Adding the lecture...");
     try {
-      const response = await axios.post(`${apiUrl}/courses/${data.id}`, data.formDataToSend, { withCredentials: true, headers: { 'Content-Type': "multipart/form-data" } });
+      const response = await axiosInstance.post(`/courses/${data.id}`, data.formDataToSend);
 
       // showing success message
       toast.update(loadingMessage, {
@@ -78,9 +77,8 @@ export const deleteCourseLecture = createAsyncThunk(
   async (data) => {
     const loadingMessage = toast.loading("Deleting the lecture...");
     try {
-      const response = await axios.delete(
-        `${apiUrl}/courses/?courseId=${data.courseId}&lectureId=${data.lectureId}`, { withCredentials: true }
-      );
+      const response = await axiosInstance.delete(
+        `/courses/?courseId=${data.courseId}&lectureId=${data.lectureId}`);
 
       // showing success message
       toast.update(loadingMessage, {
@@ -112,9 +110,8 @@ export const updateCourseLecture = createAsyncThunk(
   async (data) => {
     const loadingMessage = toast.loading("Updating the lecture...");
     try {
-      const response = await axios.put(
-        `${apiUrl}/courses/?courseId=${data.courseId}&lectureId=${data.lectureId}`, data.formDataToSend, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } }
-      );
+      const response = await axiosInstance.put(
+        `/courses/?courseId=${data.courseId}&lectureId=${data.lectureId}`, data.formDataToSend);
 
       // showing success message
       toast.update(loadingMessage, {

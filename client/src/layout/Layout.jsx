@@ -12,6 +12,8 @@ import {
 import { getAllCourses } from "../Redux/courseSlice";
 
 // import pages and components
+import RequireAuth from "../Helper/auth/RequireAuth";
+import NotRequireAuth from "../Helper/auth/NotRequireAuth";
 import Navbar from "../components/Navbar/Navbar";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -27,8 +29,6 @@ import PageNotFound from "../pages/PageNotFound";
 import Contact from "../pages/Contact/Contact";
 import About from "../pages/About/About";
 import Footer from "../components/footer/Footer";
-import RequireAuth from "../components/auth/RequireAuth";
-import NotRequireAuth from "../components/auth/NotRequireAuth";
 import Faqs from "../components/faqs/Faqs";
 import CourseCreate from "../pages/Course/CourseCreate";
 import DisplayLecture from "../pages/Dashboard/DisplayLecture";

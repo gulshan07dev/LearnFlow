@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { axiosInstance } from "../../Helper/AxiosInstance";
 
 // css import
 import "./contact.css";
@@ -37,20 +37,13 @@ export default function Contact() {
     const loadingMessage = toast.loading("Sending Your Message...");
 
     try {
-      const response = await axios.post(
-        "http://localhost:500/api/v1/contact",
-        {
-          fullName,
-          email,
-          message,
-          subject,
-          orgName,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await axiosInstance.post("/contact", {
+        fullName,
+        email,
+        message,
+        subject,
+        orgName,
+      });
       // Show success message
       toast.update(loadingMessage, {
         render: response.data.message,
@@ -63,7 +56,6 @@ export default function Contact() {
       setMessage("");
       setOrgName("");
     } catch (error) {
-      console.error(error);
       // Show error message
       toast.update(loadingMessage, {
         render: error.response?.data?.message || "An error occurred.",

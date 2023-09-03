@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import axios from "axios";
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+import { toast } from "react-toastify"; 
+import { axiosInstance } from "../Helper/AxiosInstance";
 
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
 // ....function to get the api key...
 export const getRazorPayId = createAsyncThunk("/razorPayId/get", async () => {
   try {
-    const response = await axios.get(`${apiUrl}/payments/razorpay-key`, { withCredentials: true });
+    const response = await axiosInstance.get(`/payments/razorpay-key`);
     return response.data;
   } catch (error) {
     toast.error("Failed to load data");
@@ -28,11 +27,9 @@ export const purchaseCourseBundle = createAsyncThunk(
   "/purchaseCourse",
   async () => {
     try {
-      const response = await axios.post(`${apiUrl}/payments/subscribe`, { data: {} }, { withCredentials: true });
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
+      const response = await axiosInstance.post(`/payments/subscribe`); 
+      return response?.data;
+    } catch (error) { 
       toast.error(error?.response?.data?.message);
       // Throw the error again so that it gets propagated to the rejected action
       throw error;
@@ -46,11 +43,11 @@ export const verifyUserPayment = createAsyncThunk(
   "/verifyPayment",
   async (paymentDetail) => {
     try {
-      const response = await axios.post(`${apiUrl}/payments/verify`, {
+      const response = await axiosInstance.post(`/payments/verify`, {
         razorpay_payment_id: paymentDetail.razorpay_payment_id,
         razorpay_subscription_id: paymentDetail.razorpay_subscription_id,
         razorpay_signature: paymentDetail.razorpay_signature,
-      }, { withCredentials: true, headers: { "Content-Length": "application/json" } });
+      });
       return response?.data;
     } catch (error) {
       toast.error("error?.response?.data?.message");
@@ -62,7 +59,7 @@ export const verifyUserPayment = createAsyncThunk(
 export const getPaymentRecord = createAsyncThunk("paymentrecord", async () => {
   const loadingMessage = toast.loading("Getting the payments record...");
   try {
-    const response = await axios.get(`${apiUrl}/payments?count=100`, { withCredentials: true });
+    const response = await axiosInstance.get(`/payments?count=100`);
 
     // showing success message
     toast.update(loadingMessage, {
@@ -70,8 +67,7 @@ export const getPaymentRecord = createAsyncThunk("paymentrecord", async () => {
       type: "success",
       autoClose: 500,
       isLoading: false
-    })
-    console.log(response?.data);
+    }) 
     return response?.data;
   } catch (error) {
     // showing error message
@@ -87,15 +83,13 @@ export const getPaymentRecord = createAsyncThunk("paymentrecord", async () => {
   }
 });
 
-// function to cancel the course bundle subscription
+// .....function to cancel the course bundle subscription.....
 export const cancelCourseBundle = createAsyncThunk(
   "/cancelCourse",
   async () => {
     const loadingMessage = toast.loading("Unsubscribing the bundle...");
     try {
-      const response = await axios.post(`${apiUrl}/payments/unsubscribe`, {}, {
-        withCredentials: true
-      });
+      const response = await axiosInstance.post(`/payments/unsubscribe`);
 
       // showing success message
       toast.update(loadingMessage, {

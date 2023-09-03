@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import axios from "axios";
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+import { axiosInstance } from "../Helper/AxiosInstance";
 
 const initialState = {
   coursesData: [],
@@ -11,7 +10,7 @@ const initialState = {
 // ......function to get all courses........
 export const getAllCourses = createAsyncThunk("/course/get", async () => {
   try {
-    const response = await axios.get(`${apiUrl}/courses`, { withCredentials: true });
+    const response = await axiosInstance.get(`/courses`);
 
     return response.data.courses;
   } catch (error) {
@@ -34,9 +33,7 @@ export const createNewCourse = createAsyncThunk(
     );
     try {
 
-      const response = await axios.post(`${apiUrl}/courses`, data, {
-        headers: { 'Content-Type': "multipart/form-data" }, withCredentials: true
-      })
+      const response = await axiosInstance.post(`/courses`, data,)
       // showing success message 
       toast.update(loading, {
         render: response.data.message,
@@ -59,11 +56,11 @@ export const createNewCourse = createAsyncThunk(
   }
 );
 
-// function to delete the course
+// ....function to delete the course....
 export const deleteCourse = createAsyncThunk("/course/delete", async (id) => {
   const loadingMessage = toast.loading("Deleting the course...");
   try {
-    const response = await axios.delete(`${apiUrl}/courses/${id}`, { withCredentials: true });
+    const response = await axiosInstance.delete(`/courses/${id}`);
 
     // showing success message
     toast.update(loadingMessage, {
@@ -96,9 +93,7 @@ export const updateCourse = createAsyncThunk("/course/update", async (data) => {
     `Please Wait! updating your course...`
   );
   try {
-    const response = await axios.put(`${apiUrl}/courses/${data.id}`, data.formDataToSend, {
-      headers: { 'Content-Type': "multipart/form-data" }, withCredentials: true
-    });
+    const response = await axiosInstance.put(`/courses/${data.id}`, data.formDataToSend);
     // showing success message 
     toast.update(loading, {
       render: response.data.message,
@@ -108,7 +103,7 @@ export const updateCourse = createAsyncThunk("/course/update", async (data) => {
     });
 
     return response.data;
-  } catch (error) { 
+  } catch (error) {
     // showing error message 
     toast.update(loading, {
       render: error.response.data.message,

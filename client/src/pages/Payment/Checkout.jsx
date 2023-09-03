@@ -1,32 +1,59 @@
-import React, { useEffect } from "react";
-import { MdSubscriptions } from "react-icons/md";
-import subscriptionVideo from "../../assets/subscription.mp4";
-import { BiRupee } from "react-icons/bi";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+// import icons
+import { MdSubscriptions } from "react-icons/md";
+import { BiRupee } from "react-icons/bi";
+
+// import assests
+import subscriptionVideo from "../../assets/subscription.mp4";
+
+// import reducer slices
 import {
   getRazorPayId,
   purchaseCourseBundle,
   verifyUserPayment,
 } from "../../Redux/razorpaySlice";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const razorPayKey = useSelector((state) => state.razorpay.key);
-  const subscription_id = useSelector(
-    (state) => state.razorpay.subscription_id
+  const [subscription_id, setSubscription_id] = useState(
+    useSelector((state) => state.razorpay.subscription_id)
   );
   const userData = useSelector((state) => state.auth.data);
   const { isPaymentVerified } = useSelector((state) => state.razorpay);
 
   useEffect(() => {
+    // Fetch the RazorPay ID
     (async () => {
       await dispatch(getRazorPayId());
-      await dispatch(purchaseCourseBundle());
     })();
-  }, []);
+
+    // Check the user's subscription status
+    switch (userData?.subscription?.status) {
+      case "active":
+        // Navigate outside of the switch statement
+        navigate("/");
+        break;
+
+      // if already created subscription, then use previous id for this
+      case "created":
+        setSubscription_id(userData?.subscription?.id);
+        break;
+
+      default:
+        // If the user doesn't have a subscription, purchase a bundle
+        (async () => {
+          await dispatch(purchaseCourseBundle());
+        })();
+        break;
+    }
+  }, [dispatch, navigate, userData]);
 
   // for storing the payment details after successfull transaction
   const paymentDetails = {

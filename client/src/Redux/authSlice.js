@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import axios from "axios";
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+import { axiosInstance } from "../Helper/AxiosInstance";
 
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
   data: JSON.parse(localStorage.getItem("data")) || {},
   role: localStorage.getItem("role") || "",
 };
+
 // ......function to handle signup.......
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
   // showing loading message
@@ -15,13 +15,9 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     "Please wait! signing your account..."
   );
   try {
-    const response = await axios.post(
-      `${apiUrl}/user/register`,
-      data,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
-      }
+    const response = await axiosInstance.post(
+      `/user/register`,
+      data
     );
     // showing success message
     toast.update(loadingMessage, {
@@ -52,13 +48,9 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   const loadingMessage = toast.loading("Please Wait! Logging into your account...");
 
   try {
-    const response = await axios.post(
-      `${apiUrl}/user/login`,
-      data,
-      {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      }
+    const response = await axiosInstance.post(
+      `/user/login`,
+      data
     );
     // showing success message
     toast.update(loadingMessage, {
@@ -93,10 +85,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   );
 
   try {
-    await axios.get(`${apiUrl}/user/logout`, {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    });
+    await axiosInstance.get(`/user/logout`);
 
     toast.update(loadingMessage, {
       render: "Logged out successfully",
@@ -120,9 +109,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 // .......function to fetch user data.....
 export const getUserData = createAsyncThunk("/user/details", async () => {
   try {
-    const res = await axios.get(`${apiUrl}/user/me`, {
-      withCredentials: true
-    });
+    const res = await axiosInstance.get(`/user/me`);
     return res?.data;
   } catch (error) {
     toast.error(error.response.data.message);
@@ -141,15 +128,9 @@ export const updateProfile = createAsyncThunk(
       "Please Wait! updating your profile..."
     );
     try {
-      const response = await axios.post(
-        `${apiUrl}/user/update/${data[0]}`,
-        data[1],
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
-        }
+      const response = await axiosInstance.post(
+        `/user/update/${data[0]}`,
+        data[1]
       );
       // showing success message
       toast.update(loadingMessage, {
@@ -182,13 +163,9 @@ export const changePassword = createAsyncThunk(
       "Please Wait! changing your password..."
     );
     try {
-      const response = await axios.post(
-        `${apiUrl}/user/change-password`,
+      const response = await axiosInstance.post(
+        `/user/change-password`,
         userPassword,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
       );
       //  showing success message
       toast.update(loadingMessage, {
@@ -219,13 +196,9 @@ export const forgetPassword = createAsyncThunk(
     // showing loading message
     const loadingMessage = toast.loading("Please Wait! sending email...");
     try {
-      const response = await axios.post(
-        `${apiUrl}/user/reset`,
-        { email },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
+      const response = await axiosInstance.post(
+        `/user/reset`,
+        { email }
       );
       //  showing success message
       toast.update(loadingMessage, {
@@ -257,13 +230,9 @@ export const resetPassword = createAsyncThunk("/user/reset", async (data) => {
   // showing loading message
   const loadingMessage = toast.loading("Please Wait! reseting your password...");
   try {
-    const response = await axios.post(
-      `${apiUrl}/user/reset/${data.resetToken}`,
-      { password: data.password },
-      {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      }
+    const response = await axiosInstance.post(
+      `/user/reset/${data.resetToken}`,
+      { password: data.password }
     );
     // showing success message
     toast.update(loadingMessage, {
