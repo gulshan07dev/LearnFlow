@@ -60,7 +60,7 @@ export const login = createAsyncThunk("auth/login", async (data) => {
       isLoading: false,
     });
 
-    return response.data;
+    return response?.data;
   } catch (error) {
     // showing error message
     toast.update(loadingMessage, {
@@ -208,7 +208,7 @@ export const forgetPassword = createAsyncThunk(
         closeButton: "true",
         isLoading: false,
       });
-      return response.data
+      return response?.data
     } catch (error) {
       // showing error message
       toast.update(loadingMessage, {
