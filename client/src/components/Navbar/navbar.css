@@ -16,10 +16,6 @@ nav .logo {
     width: 100px;
 }
 
-nav .logo img {
-    width: 150%;
-}
-
 nav .search-bar {
     max-width: 800px;
     width: 50%;
@@ -99,7 +95,8 @@ nav .profile svg {
     margin-bottom: 15px;
 }
 
-.modal-content>div img, .modal-content>div svg{
+.modal-content>div img,
+.modal-content>div svg {
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -153,7 +150,7 @@ nav .profile svg {
     color: var(--primary-bg);
     font-weight: 600;
 }
- 
+
 .modal-option:hover {
     background-color: #ececff;
 }
@@ -178,10 +175,11 @@ nav .profile svg {
     }
 
     nav .logo {
-        width: 65px;
+        width: 85px;
     }
+
     .custom-modal {
-        /* Style the modal container */ 
+        /* Style the modal container */
         top: -10px;
         right: 7px;
         padding: 70px 20px 0 0;

@@ -5,7 +5,7 @@ import LogoImg from "../assets/logo.png";
 export default function Logo() {
   return (
     <NavLink className="logo" to="/">
-      <img src={LogoImg} alt="logo" />
+      <img src={LogoImg} alt="logo" className="scale-150" />
     </NavLink>
   );
 }

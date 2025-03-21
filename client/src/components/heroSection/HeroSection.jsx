@@ -33,7 +33,7 @@ export default function HeroSection() {
               {">"}
             </span>
             <br />
-            With LMS Skills
+            With LearnFlow
           </h1>
 
           <p>
